@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页</title>
+    <!-- 链接到外部 CSS 文件 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 页头 -->
+    <header>
+        <nav>
+            <!-- 导航栏链接 -->
+            <ul class="nav-links">
+                <li><a href="#Home">首页</a></li>
+                <li><a href="#Cloud Notes">Cloud Notes</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#services">服务</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- 主内容区域 -->
+    <main>
+        <!-- 首页部分 -->
+        <section id="Home">
+            <h1>欢迎来到我们的网站</h1>
+            <p>
+                这是一个简单的网页模板。您可以访问
+                <!-- 嵌入链接到外部网站 -->
+                <a href="https://example.com" target="_blank">Example</a>
+                了解更多。
+            </p>
+            <section id="Cloud Notes">
+            <h2>Cloud Notes</h2>
+                <p> 
+                <a href="https://dir.momobako.me" target="_blank">SUOU AKI</a>
+                    <!-- 使用按钮跳转 -->
+                <button onclick="location.href='https://example.com';">跳转到 Example</button>
+            </p>
+        </section>
+            
+        <!-- 关于我们部分 -->
+        <section id="about">
+            <h2>关于我们</h2>
+            <p>
+                我们是一家致力于提供优质服务的公司。了解我们的
+                <!-- 嵌入链接到站内其他部分 -->
+                <a href="#services">服务</a>。
+            </p>
+        </section>
+        <!-- 服务部分 -->
+        <section id="services">
+            <h2>我们的服务</h2>
+            <ul>
+                <!-- 列表项可以包含链接 -->
+                <li><a href="https://example.com/service1" target="_blank">服务一</a></li>
+                <li><a href="https://example.com/service2" target="_blank">服务二</a></li>
+                <li><a href="https://example.com/service3" target="_blank">服务三</a></li>
+            </ul>
+        </section>
+        <!-- 联系我们部分 -->
+        <section id="contact">
+            <h2>联系我们</h2>
+            <form>
+                <label for="name">姓名：</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">邮箱：</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">留言：</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <button type="submit">提交</button>
+            </form>
+        </section>
+   <footer id="footer" style="width:100%;text-align:center;padding:24px 0 12px 0; background:rgba(0,0,0,0.04);margin-top:40px;">
+  <div style="margin-bottom:8px;">
+    <a href="https://passport.bilibili.com/499422748" target="_blank" title="bilibili" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bilibili.svg" alt="bilibili" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://youtube.com/你的频道" target="_blank" title="YouTube" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://x.com/你的账号" target="_blank" title="X" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://discord.com/你的账号" target="_blank" title="discord" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="discord" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://instagram.com/你的账号" target="_blank" title="Instagram" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://github.com/akxxxxxxxxx9" target="_blank" title="GitHub" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://web.telegram.org/你的账号" target="_blank" title="telegram" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="telegram" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+  </div>
+  <div style="margin-top:10px;font-size:15px;color:#555;">
+    团队成员：SUOU AKI
+  </div>
+  <div style="margin-top:8px;font-size:13px;color:#aaa;">
+    &copy; 2025 AKI | Powered by Cloudflare Workers
+  </div>
+    </footer>
+</body>
+</html>
+
