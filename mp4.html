@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://img.momobako.me/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MP4 视频播放器</title>
+  <style>
+    :root {
+      --main-red: #ff2b2b;
+      --main-bg: #f6f6f6;
+      --main-white: #fff;
+      --main-gray: #eee;
+      --main-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      --main-radius: 10px;
+      --main-hover: #ffeaea;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #0f0f0f;
+    }
+    .header {
+      height: 56px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    .logo {
+      font-weight: bold;
+      color: #ff0000;
+      font-size: 24px;
+      letter-spacing: 1px;
+      margin-right: 32px;
+    }
+    .search-box {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .search-box input {
+      width: 400px;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 2px 0 0 2px;
+      outline: none;
+      font-size: 16px;
+    }
+    .search-box button {
+      padding: 8px 16px;
+      border: 1px solid var(--main-red);
+      border-left: none;
+      background: var(--main-red);
+      color: #fff;
+      border-radius: 0 2px 2px 0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-box button:hover {
+      background: #d60000;
+    }
+    .sidebar {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      width: 200px;
+      height: calc(100vh - 56px);
+      background: #fff;
+      border-right: 1px solid #eee;
+      padding-top: 16px;
+      z-index: 10;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar li {
+      padding: 12px 24px;
+      cursor: pointer;
+      color: #222;
+      font-size: 16px;
+    }
+    .sidebar li:hover {
+      background: #f1f1f1;
+    }
+    .main {
+      margin-left: 200px;
+      padding-top: 72px;
+      padding-left: 24px;
+      padding-right: 24px;
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      gap: 32px;
+    }
+    .video-list {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .video-item {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .video-item {
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .video-item:hover {
+      box-shadow: 0 4px 16px rgba(255,43,43,0.15);
+      transform: translateY(-4px) scale(1.03);
+    }
+    .video-thumb {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: #ddd;
+      display: block;
+    }
+    .video-info {
+      padding: 12px;
+    }
+    .video-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0 0 6px 0;
+      color: #111;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .video-desc {
+      font-size: 13px;
+      color: #666;
+      height: 32px;
+      overflow: hidden;
+    }
+    /* 播放器页面样式 */
+    .player-page {
+      display: flex;
+      flex: 1;
+      gap: 32px;
+    }
+    .player-main {
+      flex: 2;
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .player-main video {
+      width: 100%;
+      max-width: 720px;
+      height: 400px;
+      background: #000;
+      border-radius: 8px;
+    }
+    .player-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 16px 0 8px 0;
+      color: #111;
+      align-self: flex-start;
+    }
+    .player-desc {
+      font-size: 15px;
+      color: #666;
+      align-self: flex-start;
+    }
+    .playlist {
+      flex: 1;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      padding: 16px;
+      max-width: 320px;
+      min-width: 220px;
+      height: fit-content;
+    }
+    .playlist-title {
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    .playlist-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      cursor: pointer;
+      border-bottom: 1px solid #f1f1f1;
+      transition: background 0.15s;
+    }
+    .playlist-item:last-child {
+      border-bottom: none;
+    }
+    .playlist-item.active {
+      background: var(--main-hover);
+      border-left: 4px solid var(--main-red);
+      padding-left: 8px;
+    }
+    .playlist-item:hover {
+      background: #fff4f4;
+    }
+    .playlist-thumb {
+      width: 60px;
+      height: 36px;
+      object-fit: cover;
+      background: #ddd;
+      border-radius: 4px;
+    }
+    .playlist-info {
+      flex: 1;
+      overflow: hidden;
+    }
+    .playlist-title-small {
+      font-size: 15px;
+      font-weight: bold;
+      color: #222;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .playlist-desc-small {
+      font-size: 12px;
+      color: #888;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--main-red);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 18px;
+      font-size: 15px;
+      margin: 10px 0;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(255,43,43,0.07);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover {
+      background: #d60000;
+      box-shadow: 0 3px 8px rgba(255,43,43,0.12);
+    }
+    .no-result {
+      grid-column: 1/-1;
+      text-align: center;
+      color: #aaa;
+      font-size: 18px;
+      padding: 60px 0;
+    }
+    @media (max-width: 900px) {
+      .main, .player-page {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100px;
+      }
+      .main {
+        margin-left: 100px;
+      }
+    }
+    @media (max-width: 600px) {
+      .sidebar {
+        display: none;
+      }
+      .main {
+        margin-left: 0;
+        padding-left: 4px;
+        padding-right: 4px;
+      }
+      .header {
+        padding: 0 8px;
+      }
+      .search-box input {
+        width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="logo">SUOUAKI</span>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="搜索视频...">
+      <button onclick="searchVideos()">搜索</button>
+    </div>
+  </div>
+  <div class="sidebar">
+    <ul>
+      <li>首页</li>
+      <li>播放列表</li>
+      <li>收藏</li>
+      <li>设置</li>
+    </ul>
+  </div>
+  <div class="main" id="mainContent">
+    <!-- 视频列表区域 -->
+    <div class="video-list" id="videoList"></div>
+  </div>
+  <script>
+    // 示例视频数据（可替换为你自己的 mp4 文件和缩略图）
+    const videos = [
+      {
+        title: "示例视频1",
+        desc: "这是第一个本地示例视频。",
+        src: "videos/sample1.mp4",
+        thumb: "videos/thumb1.jpg"
+      },
+      {
+        title: "示例视频",
+        desc: "这是本地示例视频。",
+        src: "videos/sample3.mp4",
+        thumb: "videos/thumb3.jpg"
+      }
+    ];
+
+    let lastSearch = '';
+
+    // 初始渲染视频缩略图列表
+    function renderVideoList(filter = "") {
+      lastSearch = filter;
+      const list = document.getElementById('videoList');
+      list.innerHTML = "";
+      let filtered = videos.filter(v => v.title.includes(filter) || v.desc.includes(filter));
+      if (filtered.length === 0) {
+        list.innerHTML = '<div class="no-result">没有找到相关视频</div>';
+        return;
+      }
+      filtered.forEach((video, idx) => {
+        const item = document.createElement('div');
+        item.className = 'video-item';
+        item.onclick = () => openPlayer(getVideoIndex(video));
+        item.innerHTML = `
+          <img class="video-thumb" src="${video.thumb}" alt="${video.title}">
+          <div class="video-info">
+            <div class="video-title">${video.title}</div>
+            <div class="video-desc">${video.desc}</div>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function getVideoIndex(video) {
+      return videos.findIndex(v => v.src === video.src);
+    }
+
+    // 打开播放器页面
+    function openPlayer(idx) {
+      const video = videos[idx];
+      document.getElementById('mainContent').innerHTML = `
+        <div class="player-page">
+          <div class="player-main">
+            <button class="btn" onclick="goHome()">← 返回主页</button>
+            <video id="mainVideo" src="${video.src}" controls autoplay tabindex="0"></video>
+            <div style="width:100%;display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+              <span id="videoTime" style="font-size:14px;color:#888;"></span>
+              <span style="font-size:13px;color:#aaa;">空格播放/暂停，←→快退/快进5秒</span>
+            </div>
+            <div class="player-title">${video.title}</div>
+            <div class="player-desc">${video.desc}</div>
+          </div>
+          <div class="playlist">
+            <div class="playlist-title">播放列表</div>
+            <div id="playlistItems"></div>
+          </div>
+        </div>
+      `;
+      renderPlaylist(idx);
+      setupPlayerEvents(idx);
+    }
+
+    // 播放器功能增强
+    function setupPlayerEvents(idx) {
+      const video = document.getElementById('mainVideo');
+      const timeLabel = document.getElementById('videoTime');
+      function formatTime(sec) {
+        if (isNaN(sec)) return '00:00';
+        let m = Math.floor(sec/60), s = Math.floor(sec%60);
+        return (m<10?'0':'')+m+":"+(s<10?'0':'')+s;
+      }
+      function updateTime() {
+        timeLabel.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+      }
+      video.addEventListener('timeupdate', updateTime);
+      video.addEventListener('loadedmetadata', updateTime);
+      video.addEventListener('ended', () => {
+        // 自动播放下一个
+        if (idx+1 < videos.length) openPlayer(idx+1);
+      });
+      // 键盘快捷键
+      video.focus();
+      video.addEventListener('keydown', e => {
+        if (e.code === 'Space') {
+          e.preventDefault();
+          if (video.paused) video.play(); else video.pause();
+        } else if (e.code === 'ArrowLeft') {
+          video.currentTime = Math.max(0, video.currentTime-5);
+        } else if (e.code === 'ArrowRight') {
+          video.currentTime = Math.min(video.duration, video.currentTime+5);
+        }
+      });
+    }
+
+    // 返回主页
+    function goHome() {
+      document.getElementById('mainContent').innerHTML = `
+        <div class="video-list" id="videoList"></div>
+      `;
+      renderVideoList(lastSearch);
+    }
+
+    // 渲染播放列表
+    function renderPlaylist(currentIdx) {
+      const playlist = document.getElementById('playlistItems');
+      playlist.innerHTML = "";
+      videos.forEach((video, idx) => {
+        const item = document.createElement('div');
+        item.className = 'playlist-item' + (idx === currentIdx ? ' active' : '');
+        item.onclick = () => openPlayer(idx);
+        item.innerHTML = `
+          <img class="playlist-thumb" src="${video.thumb}" alt="${video.title}">
+          <div class="playlist-info">
+            <div class="playlist-title-small">${video.title}</div>
+            <div class="playlist-desc-small">${video.desc}</div>
+          </div>
+        `;
+        playlist.appendChild(item);
+      });
+    }
+
+    // 搜索功能
+    function searchVideos() {
+      const val = document.getElementById('searchInput').value.trim();
+      renderVideoList(val);
+    }
+
+    // 回车也能搜索
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('searchInput').addEventListener('keydown', function(e){
+        if (e.key === 'Enter') searchVideos();
+      });
+    });
+
+    // 初始加载
+    renderVideoList();
+  </script>
+</body>
+</html>
