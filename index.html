@@ -1,95 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="https://img.momobako.me/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网页</title>
-    <!-- 链接到外部 CSS 文件 -->
-    <link rel="stylesheet" href="styles.css">
+    <title>免费科学上网节点分享</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- 页头 -->
-    <header>
-        <nav>
-            <!-- 导航栏链接 -->
-            <ul class="nav-links">
-                <li><a href="#Home">首页</a></li>
-                <li><a href="#Cloud Notes">Cloud Notes</a></li>
-                <li><a href="#about">音乐播放器</a></li>
-                <li><a href="#services">服务</a></li>
-            </ul>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="logo">免费科学上网节点分享</div>
+        <nav class="nav">
+            <a href="#">首页</a>
+            <a href="#">科学上网节点分享</a>
+            <a href="#">科学上网平台端</a>
+            <a href="#">订阅转换工具</a>
         </nav>
+        <div class="header-actions">
+            <button class="icon-btn"><i class="fas fa-search"></i></button>
+            <button class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button class="icon-btn"><i class="fas fa-user"></i></button>
+        </div>
     </header>
-    <!-- 主内容区域 -->
-    <main>
-        <!-- 首页部分 -->
-        <section id="Home">
-            <h1>欢迎来到我们的网站</h1>
-            <p>
-                这是一个简单的网页模板。您可以访问
-                <!-- 嵌入链接到外部网站 -->
-                <a href="https://example.com" target="_blank">Example</a>
-                了解更多。
-            </p>
-            <section id="Cloud Notes">
-            <h2>Cloud Notes</h2>
-                <p> 
-                <a href="https://dir.momobako.me" target="_blank">SUOU AKI</a>
-                    <!-- 使用按钮跳转 -->
-                <button onclick="location.href='https://example.com';">跳转到 Example</button>
-            </p>
+
+    <main class="main blog-main">
+        <!-- 文章列表区 -->
+        <section class="blog-list">
+            <h1 class="blog-title">免费科学上网节点分享</h1>
+            <div class="card-grid">
+                <!-- 文章卡片1 -->
+                <div class="blog-card">
+                    <span class="tag">V2ray</span>
+                    <h2>【5/9 免费节点，长期有效，不稳定】</h2>
+                    <div class="meta">
+                        <span><i class="fas fa-user"></i> aki</span>
+                        <span><i class="fas fa-calendar"></i> 2025年5月9日</span>
+                        <span><i class="fas fa-comment"></i> 暂无评论</span>
+                    </div>
+                    <div class="desc">vmess://ew0KICAidG…</div>
+                    <button class="btn">阅读更多</button>
+                </div>
+                <!-- 文章卡片2 -->
+                <div class="blog-card">
+                    <span class="tag tag-pink">V2ray</span>
+                    <h2>【优化路线免费vless节点】5/8</h2>
+                    <div class="meta">
+                        <span><i class="fas fa-user"></i> aki</span>
+                        <span><i class="fas fa-calendar"></i> 2025年5月8日</span>
+                        <span><i class="fas fa-comment"></i> 暂无评论</span>
+                    </div>
+                    <div class="desc">vless://6d06…</div>
+                    <button class="btn">阅读更多</button>
+                </div>
+                <!-- 文章卡片3 -->
+                <div class="blog-card">
+                    <span class="tag">V2ray</span>
+                    <h2>【长期有效vless节点】cloudflare搭建</h2>
+                    <div class="meta">
+                        <span><i class="fas fa-user"></i> aki</span>
+                        <span><i class="fas fa-calendar"></i> 2025年5月5日</span>
+                        <span><i class="fas fa-comment"></i> 暂无评论</span>
+                    </div>
+                    <div class="desc">空白内容</div>
+                    <button class="btn">阅读更多</button>
+                </div>
+                <div class="blog-card">
+                    <span class="tag">V2ray</span>
+                    <h2>【你的文章标题】</h2>
+                    <div class="meta">
+                        <span><i class="fas fa-user"></i> 作者名</span>
+                        <span><i class="fas fa-calendar"></i> 2025年5月20日</span>
+                        <span><i class="fas fa-comment"></i> 暂无评论</span>
+                    </div>
+                    <div class="desc">这里是文章简要内容或节点信息...</div>
+                    <button class="btn">阅读更多</button>
+                </div>
+                <!-- 文章卡片4 -->
+                <div class="blog-card">
+                    <span class="tag">V2ray</span>
+                    <h2>【免费vmess节点】纯净台湾节点；解锁流媒体。2025/5/5 18:40</h2>
+                    <div class="meta">
+                        <span><i class="fas fa-user"></i> aki</span>
+                        <span><i class="fas fa-calendar"></i> 2025年5月5日</span>
+                        <span><i class="fas fa-comment"></i> 暂无评论</span>
+                    </div>
+                    <div class="desc">vmess://…</div>
+                    <button class="btn">阅读更多</button>
+                </div>
+            </div>
         </section>
-            
-        <!-- 关于我们部分 -->
-        <section id="about">
-            <h2>音乐播放器</h2>
-            <p>
-                我们是一家致力于提供优质服务的公司。了解我们的
-                <!-- 嵌入链接到站内其他部分 -->
-                 <button onclick="location.href='/music.html';">aki的歌单</button>
-            </p>
-        </section>
-        <!-- 服务部分 -->
-        <section id="services">
-            <h2>我们的服务</h2>
-            <ul>
-                <!-- 列表项可以包含链接 -->
-                <li><a href="https://example.com/service1" target="_blank">服务一</a></li>
-                <li><a href="https://example.com/service2" target="_blank">服务二</a></li>
-                <li><a href="https://example.com/service3" target="_blank">服务三</a></li>
-            </ul>
-        </section>
-   <footer id="footer" style="width:100%;text-align:center;padding:24px 0 12px 0; background:rgba(0,0,0,0.04);margin-top:40px;">
-  <div style="margin-bottom:8px;">
-    <a href="https://passport.bilibili.com/499422748" target="_blank" title="bilibili" class="footer-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bilibili.svg" alt="bilibili" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-    </a>
-    <a href="https://youtube.com/你的频道" target="_blank" title="YouTube" class="footer-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-    </a>
-    <a href="https://x.com/你的账号" target="_blank" title="X" class="footer-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-    </a>
-    <a href="https://discord.com/你的账号" target="_blank" title="discord" class="footer-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="discord" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-    </a>
-    <a href="https://instagram.com/你的账号" target="_blank" title="Instagram" class="footer-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-    </a>
-    <a href="https://github.com/akxxxxxxxxx9" target="_blank" title="GitHub" class="footer-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-    </a>
-    <a href="https://web.telegram.org/你的账号" target="_blank" title="telegram" class="footer-icon">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="telegram" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-    </a>
-  </div>
-  <div style="margin-top:10px;font-size:15px;color:#555;">
-    团队成员：SUOU AKI
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#aaa;">
-    &copy; 2025 AKI | Powered by Cloudflare Workers
-  </div>
-    </footer>
+
+        <!-- 右侧边栏 -->
+        <aside class="sidebar blog-sidebar">
+            <div class="profile-card">
+                <div class="avatar">
+                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=123456789&spec=100" alt="头像">
+                </div>
+                <div class="profile-name">好人</div>
+                <div class="profile-desc">纯粹自由的精神，欢迎自由网络</div>
+                <div class="profile-social">
+                    <a href="#" class="social-btn"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="archive-card">
+                <div class="archive-title">Archives</div>
+                <div class="archive-list">
+                    <a href="#">2025 年 5 月</a>
+                </div>
+            </div>
+            <div class="ads-card">ads</div>
+        </aside>
+    </main>
+    <script src="main.js"></script>
 </body>
 </html>
-
