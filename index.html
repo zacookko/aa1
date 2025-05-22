@@ -49,20 +49,6 @@
     </header>
 
     <main class="main blog-main">
-            <main class="main blog-main">
-        <!-- 文章列表开始 -->
-        <div class="post-list" id="postList"></div>
-        <script>
-        fetch('posts.json')
-          .then(res => res.json())
-          .then(posts => {
-            const postList = document.getElementById('postList');
-            postList.innerHTML = posts.map(post => `
-              <div class="post-card">
-              </div>
-            `).join('');
-          });
-        </script>
         </script>
         <!-- 文章列表区 -->
         <section class="blog-list">
@@ -129,31 +115,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- 右侧边栏 -->
-        <aside class="sidebar blog-sidebar">
-            <div class="profile-card">
-                <div class="avatar">
-                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=123456789&spec=100" alt="头像">
-                </div>
-                <div class="profile-name">好人</div>
-                <div class="profile-desc">纯粹自由的精神，欢迎自由网络</div>
-                <div class="profile-social">
-                    <a href="#" class="social-btn"><i class="fab fa-x-twitter"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="archive-card">
-                <div class="archive-title">Archives</div>
-                <div class="archive-list">
-                    <a href="#">2025 年 5 月</a>
-                </div>
-            </div>
-            <div class="ads-card">ads</div>
-        </aside>
-    </main>
+        
     <script src="main.js"></script>
     <footer id="footer" style="width:100%;text-align:center;padding:24px 0 12px 0; background:rgba(0,0,0,0.04);margin-top:40px;">
   <div style="margin-bottom:8px;">
