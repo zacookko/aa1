@@ -15,29 +15,31 @@
     <header class="header">
         <div class="logo">免费科学上网节点分享</div>
         <nav class="nav">
-            <a href="#">首页</a>
-      <a href="#">科学上网节点分享</a>
-      <ul class="dropdown">
-        <li><a href="#">节点A</a></li>
-        <li>
-          <a href="#">节点B</a>
-          <ul class="dropdown">
-            <li><a href="#">节点B-1</a></li>
-            <li><a href="#">节点B-2</a></li>
-          </ul>
-        </li>
-        <li><a href="#">节点C</a></li>
-      </ul>
-    </li>
-    <li><a href="#">科学上网平台端</a></li>
-    <li>
-      <a href="#">订阅转换工具</a>
-      <ul class="dropdown">
-        <li><a href="#">工具1</a></li>
-        <li><a href="#">工具2</a></li>
-      </ul>
-    </li>
-  </ul>
+            <ul class="nav-list">
+              <li><a href="#">首页</a></li>
+              <li>
+                <a href="#">科学上网节点分享</a>
+                <ul class="dropdown">
+                  <li><a href="#">节点A</a></li>
+                  <li>
+                    <a href="#">节点B</a>
+                    <ul class="dropdown">
+                      <li><a href="#">节点B-1</a></li>
+                      <li><a href="#">节点B-2</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">节点C</a></li>
+                </ul>
+              </li>
+              <li><a href="#">科学上网平台端</a></li>
+              <li>
+                <a href="#">订阅转换工具</a>
+                <ul class="dropdown">
+                  <li><a href="#">工具1</a></li>
+                  <li><a href="#">工具2</a></li>
+                </ul>
+              </li>
+            </ul>
 </nav>
         <div class="header-actions">
             <button class="icon-btn"><i class="fas fa-search"></i></button>
@@ -48,265 +50,26 @@
 
     <main class="main blog-main">
         <!-- 文章列表开始 -->
-        <section class="blog-list">
-            <h1 class="blog-title">免费科学上网节点分享</h1>
-            <div class="card-grid">
-                <!-- 文章卡片1 -->
-                <div class="blog-card">
-                    <span class="tag">V2ray</span>
-                    <h2>【5/9 免费节点，长期有效，不稳定】</h2>
-                    <div class="meta">
-                        <span><i class="fas fa-user"></i> aki</span>
-                        <span><i class="fas fa-calendar"></i> 2025年5月9日</span>
-                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                    </div>
-                    <div class="desc">vmess://ew0KICAidG…</div>
-                    <button class="btn">阅读更多</button>
-                </div>
-                <!-- 文章卡片2 -->
-                <div class="blog-card">
-                    <span class="tag tag-pink">V2ray</span>
-                    <h2>【优化路线免费vless节点】5/8</h2>
-                    <div class="meta">
-                        <span><i class="fas fa-user"></i> aki</span>
-                        <span><i class="fas fa-calendar"></i> 2025年5月8日</span>
-                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                    </div>
-                    <div class="desc">vless://6d06…</div>
-                    <button class="btn">阅读更多</button>
-                </div>
-                <!-- 文章卡片3 -->
-                <div class="blog-card">
-                    <span class="tag">V2ray</span>
-                    <h2>【长期有效vless节点】cloudflare搭建</h2>
-                    <div class="meta">
-                        <span><i class="fas fa-user"></i> aki</span>
-                        <span><i class="fas fa-calendar"></i> 2025年5月5日</span>
-                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                    </div>
-                    <div class="desc">空白内容</div>
-                    <button class="btn">阅读更多</button>
-                </div>
-                <div class="blog-card">
-                    <span class="tag">V2ray</span>
-                    <h2>【你的文章标题】</h2>
-                    <div class="meta">
-                        <span><i class="fas fa-user"></i> 作者名</span>
-                        <span><i class="fas fa-calendar"></i> 2025年5月20日</span>
-                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                    </div>
-                    <div class="desc">这里是文章简要内容或节点信息...</div>
-                    <button class="btn">阅读更多</button>
-                </div>
-                <!-- 文章卡片4 -->
-                <div class="blog-card">
-                    <span class="tag">V2ray</span>
-                    <h2>【免费vmess节点】纯净台湾节点；解锁流媒体。2025/5/5 18:40</h2>
-                    <div class="meta">
-                        <span><i class="fas fa-user"></i> aki</span>
-                        <span><i class="fas fa-calendar"></i> 2025年5月5日</span>
-                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                    </div>
-                    <div class="desc">vmess://…</div>
-                    <button class="btn">阅读更多</button>
-                </div>
-            </div>
-        </section>
+        <div class="post-list" id="postList"></div>
+        <script>
+        fetch('posts.json')
+          .then(res => res.json())
+          .then(posts => {
+            const postList = document.getElementById('postList');
+            postList.innerHTML = posts.map(post => `
+              <div class="post-card">
+                <h2>${post.title}</h2>
+                <p>${post.summary}</p>
+                <span>${post.date}</span>
+                <a href="post.html?file=${post.file}">阅读全文</a>
+              </div>
+            `).join('');
+          });
+        </script>
         <!-- 文章列表区 -->
         <section class="blog-list">
             <h1 class="blog-title">免费科学上网节点分享</h1>
-            <div class="card-<!DOCTYPE html>
-                <html lang="zh-CN">
-                <head>
-                    <meta charset="UTF-8">
-                    <link rel="icon" type="image/png" href="https://img.momobako.me/favicon.ico">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>suou aki</title>
-                    <link rel="stylesheet" href="style.css">
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-                </head>
-                
-                  <!-- 侧边栏收起/展开按钮 -->
-                  <button id="sidebarToggle" class="sidebar-toggle">☰</button>
-                    <!-- 顶部导航栏 -->
-                    <header class="header">
-                        <div class="logo">SUOU AKI</div>
-                        <nav class="nav">
-                  <ul class="nav-list">
-                    <li><a href="#">首页</a></li>
-                    <li>
-                      <a href="#">科学上网节点分享</a>
-                      <ul class="dropdown">
-                        <li><a href="#">节点A</a></li>
-                        <li>
-                          <a href="#">节点B</a>
-                          <ul class="dropdown">
-                            <li><a href="#">节点B-1</a></li>
-                            <li><a href="#">节点B-2</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="#">节点C</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">科学上网平台端</a></li>
-                    <li>
-                      <a href="#">订阅转换工具</a>
-                      <ul class="dropdown">
-                        <li><a href="#">工具1</a></li>
-                        <li><a href="#">工具2</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </nav>
-                        <div class="header-actions">
-                            <button class="icon-btn"><i class="fas fa-search"></i></button>
-                            <button class="icon-btn"><i class="fas fa-moon"></i></button>
-                            <button class="icon-btn"><i class="fas fa-user"></i></button>
-                        </div>
-                    </header>
-                
-                    <main class="main blog-main">
-                        <!-- 文章列表开始 -->
-                        <div class="post-list" id="postList"></div>
-                        <script>
-                        fetch('posts.json')
-                          .then(res => res.json())
-                          .then(posts => {
-                            const postList = document.getElementById('postList');
-                            postList.innerHTML = posts.map(post => `
-                              <div class="post-card">
-                                <h2>${post.title}</h2>
-                                <p>${post.summary}</p>
-                                <span>${post.date}</span>
-                                <a href="post.html?file=${post.file}">阅读全文</a>
-                              </div>
-                            `).join('');
-                          });
-                        </script>
-                        <!-- 文章列表区 -->
-                        <section class="blog-list">
-                            <h1 class="blog-title">免费科学上网节点分享</h1>
-                            <div class="card-grid">
-                                <!-- 文章卡片1 -->
-                                <div class="blog-card">
-                                    <span class="tag">V2ray</span>
-                                    <h2>测试影片</h2>
-                                    <div class="meta">
-                                        <span><i class="fas fa-user"></i> aki</span>
-                                        <span><i class="fas fa-calendar"></i> 2025年5月9日</span>
-                                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                                    </div>
-                                    <div class="desc">田中 - TANAKA</div>
-                                    <button class="btn" onclick="window.location.href='/mp4s.html'">阅读更多</button>
-                                </div>
-                                <!-- 文章卡片2 -->
-                                <div class="blog-card">
-                                    <span class="tag tag-pink">V2ray</span>
-                                    <h2>【优化路线免费vless节点】5/8</h2>
-                                    <div class="meta">
-                                        <span><i class="fas fa-user"></i> aki</span>
-                                        <span><i class="fas fa-calendar"></i> 2025年5月8日</span>
-                                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                                    </div>
-                                    <div class="desc">vless://6d06…</div>
-                                    <button class="btn">阅读更多</button>
-                                </div>
-                                <!-- 文章卡片3 -->
-                                <div class="blog-card">
-                                    <span class="tag">V2ray</span>
-                                    <h2>【长期有效vless节点】cloudflare搭建</h2>
-                                    <div class="meta">
-                                        <span><i class="fas fa-user"></i> aki</span>
-                                        <span><i class="fas fa-calendar"></i> 2025年5月5日</span>
-                                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                                    </div>
-                                    <div class="desc">空白内容</div>
-                                    <button class="btn">阅读更多</button>
-                                </div>
-                                <div class="blog-card">
-                                    <span class="tag">music</span>
-                                    <h2>我的在线歌单</h2>
-                                    <div class="meta">
-                                        <span><i class="fas fa-user"></i> 作者名</span>
-                                        <span><i class="fas fa-calendar"></i> 2025年5月20日</span>
-                                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                                    </div>
-                                    <div class="desc">这里是文章简要内容或节点信息...</div>
-                                    <button class="btn" onclick="window.location.href='/music.html'">阅读更多</button>
-                                </div>
-                                <!-- 文章卡片4 -->
-                                <div class="blog-card">
-                                    <span class="tag">V2ray</span>
-                                    <h2>【免费vmess节点】纯净台湾节点；解锁流媒体。2025/5/5 18:40</h2>
-                                    <div class="meta">
-                                        <span><i class="fas fa-user"></i> aki</span>
-                                        <span><i class="fas fa-calendar"></i> 2025年5月5日</span>
-                                        <span><i class="fas fa-comment"></i> 暂无评论</span>
-                                    </div>
-                                    <div class="desc">vmess://…</div>
-                                    <button class="btn">阅读更多</button>
-                                </div>
-                            </div>
-                        </section>
-                
-                        <!-- 右侧边栏 -->
-                        <aside class="sidebar blog-sidebar">
-                            <div class="profile-card">
-                                <div class="avatar">
-                                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=123456789&spec=100" alt="头像">
-                                </div>
-                                <div class="profile-name">好人</div>
-                                <div class="profile-desc">纯粹自由的精神，欢迎自由网络</div>
-                                <div class="profile-social">
-                                    <a href="#" class="social-btn"><i class="fab fa-x-twitter"></i></a>
-                                    <a href="#" class="social-btn"><i class="fab fa-github"></i></a>
-                                    <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
-                                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                            <div class="archive-card">
-                                <div class="archive-title">Archives</div>
-                                <div class="archive-list">
-                                    <a href="#">2025 年 5 月</a>
-                                </div>
-                            </div>
-                            <div class="ads-card">ads</div>
-                        </aside>
-                    </main>
-                    <script src="main.js"></script>
-                  <footer id="footer" style="width:100%;text-align:center;padding:24px 0 12px 0; background:rgba(0,0,0,0.04);margin-top:40px;">
-                  <div style="margin-bottom:8px;">
-                    <a href="https://passport.bilibili.com/499422748" target="_blank" title="bilibili" class="footer-icon">
-                      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bilibili.svg" alt="bilibili" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-                    </a>
-                    <a href="https://youtube.com/你的频道" target="_blank" title="YouTube" class="footer-icon">
-                      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-                    </a>
-                    <a href="https://x.com/你的账号" target="_blank" title="X" class="footer-icon">
-                      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-                    </a>
-                    <a href="https://discord.com/你的账号" target="_blank" title="discord" class="footer-icon">
-                      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="discord" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-                    </a>
-                    <a href="https://instagram.com/你的账号" target="_blank" title="Instagram" class="footer-icon">
-                      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-                    </a>
-                    <a href="https://github.com/akxxxxxxxxx9" target="_blank" title="GitHub" class="footer-icon">
-                      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-                    </a>
-                    <a href="https://web.telegram.org/你的账号" target="_blank" title="telegram" class="footer-icon">
-                      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="telegram" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
-                    </a>
-                  </div>
-                  <div style="margin-top:10px;font-size:15px;color:#555;">
-                    团队成员：SUOU AKI
-                  </div>
-                  <div style="margin-top:8px;font-size:13px;color:#aaa;">
-                    &copy; 2025 AKI | Powered by Cloudflare Workers
-                  </div>
-                </footer>
-                </body>
-                </html>grid">
+            <div class="card-grid">
                 <!-- 文章卡片1 -->
                 <div class="blog-card">
                     <span class="tag">V2ray</span>
@@ -394,5 +157,36 @@
         </aside>
     </main>
     <script src="main.js"></script>
+    <footer id="footer" style="width:100%;text-align:center;padding:24px 0 12px 0; background:rgba(0,0,0,0.04);margin-top:40px;">
+  <div style="margin-bottom:8px;">
+    <a href="https://passport.bilibili.com/499422748" target="_blank" title="bilibili" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/bilibili.svg" alt="bilibili" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://youtube.com/你的频道" target="_blank" title="YouTube" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://x.com/你的账号" target="_blank" title="X" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://discord.com/你的账号" target="_blank" title="discord" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="discord" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://instagram.com/你的账号" target="_blank" title="Instagram" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://github.com/akxxxxxxxxx9" target="_blank" title="GitHub" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+    <a href="https://web.telegram.org/你的账号" target="_blank" title="telegram" class="footer-icon">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="telegram" style="width:28px;height:28px;margin:0 10px;vertical-align:middle;">
+    </a>
+  </div>
+  <div style="margin-top:10px;font-size:15px;color:#555;">
+    团队成员：SUOU AKI
+  </div>
+  <div style="margin-top:8px;font-size:13px;color:#aaa;">
+    &copy; 2025 AKI | Powered by Cloudflare Workers
+  </div>
+</footer>
 </body>
 </html>
