@@ -31,20 +31,90 @@
   margin-right: 32px;
 }
 .nav {
+  /* 让导航菜单内的ul布局为横向 */
   display: flex;
+  align-items: center;
   gap: 18px;
 }
-.nav a {
-  color: #222;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: background 0.2s;
+.nav-list, .dropdown {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-.nav a:hover {
+.nav-list > li {
+  display: inline-block;
+  position: relative;
+}
+.nav-list > li > a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #222;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-list > li > a:hover {
   background: #f7f7f7;
   color: var(--main-red);
+}
+/* 下拉菜单默认隐藏 */
+.dropdown {
+  display: none;
+  position: absolute;
+  background: #fff;
+  min-width: 160px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  z-index: 1000;
+  top: 100%;
+  left: 0;
+  border-radius: 8px;
+  padding: 8px 0;
+}
+.dropdown li {
+  display: block;
+  position: relative;
+}
+.dropdown li a {
+  display: block;
+  padding: 10px 20px;
+  color: #222;
+  text-decoration: none;
+  font-size: 15px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.dropdown li a:hover {
+  background: #f7f7f7;
+  color: var(--main-red);
+}
+/* 一级菜单悬停显示二级菜单 */
+.nav-list > li:hover > .dropdown {
+  display: block;
+}
+/* 二级菜单悬停显示三级菜单，右侧弹出 */
+.dropdown li:hover > .dropdown {
+  display: block;
+  top: 0;
+  left: 100%;
+  margin-left: 2px;
+}
+/* 保证下拉菜单的字体和圆角风格与主站一致 */
+.dropdown, .dropdown li a {
+  font-family: inherit;
+  border-radius: 6px;
+  background: #fff;
+}
+/* 适配移动端时隐藏下拉（如需点击展开可再加js） */
+@media (max-width: 900px) {
+  .nav-list > li, .nav-list {
+    display: block;
+  }
+  .dropdown {
+    position: static;
+    box-shadow: none;
+    min-width: 0;
+  }
 }
 .header-actions {
   display: flex;
