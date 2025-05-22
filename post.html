@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>文章阅读</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="post-detail-container">
+    <a href="index.html" class="back-home">← 返回首页</a>
+    <div id="content" class="post-detail-content">加载中...</div>
+  </div>
+  <script>
+    // 获取 URL 参数中的 file
+    function getQueryVariable(name) {
+      const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+      const r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    const file = getQueryVariable('file');
+    if (file) {
+      fetch('posts/' + file)
+        .then(res => res.text())
+        .then(md => {
+          document.getElementById('content').innerHTML = marked.parse(md);
+        })
+        .catch(() => {
+          document.getElementById('content').innerHTML = '文章加载失败';
+        });
+    } else {
+      document.getElementById('content').innerHTML = '未指定文章文件';
+    }
+  </script>
+  <script src="main.js"></script>
+</body>
+</html>
