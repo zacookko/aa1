@@ -49,6 +49,20 @@
     </header>
 
     <main class="main blog-main">
+            <main class="main blog-main">
+        <!-- 文章列表开始 -->
+        <div class="post-list" id="postList"></div>
+        <script>
+        fetch('posts.json')
+          .then(res => res.json())
+          .then(posts => {
+            const postList = document.getElementById('postList');
+            postList.innerHTML = posts.map(post => `
+              <div class="post-card">
+              </div>
+            `).join('');
+          });
+        </script>
         </script>
         <!-- 文章列表区 -->
         <section class="blog-list">
